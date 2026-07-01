@@ -1,5 +1,5 @@
 [project]
-name = "obsidian-agent-cli"
+name = "obsidian-agent-cli-app"
 version = "0.1.0"
 description = "A conversational AI agent for your Obsidian vault, connected via MCP."
 readme = "README.md"

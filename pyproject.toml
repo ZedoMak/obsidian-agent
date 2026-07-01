@@ -16,7 +16,7 @@ dependencies = [
 ]
 
 [project.scripts]
-obsidian-agent = "obsidian_agent.cli:main"
+obsidian-agent = "obsidian_agent.cli:app"
 
 [build-system]
 requires = ["hatchling"]

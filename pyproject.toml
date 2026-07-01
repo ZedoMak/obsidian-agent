@@ -8,6 +8,9 @@ license = { text = "MIT" }
 dependencies = [
     "openai>=1.0.0",
     "mcp>=1.0.0",
+    "obsidian-mcp>=2.1.6",
+    "fastmcp==2.8.1",
+    "pydantic<2.12,>=2.0",
 ]
 
 [project.scripts]

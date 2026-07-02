@@ -18,7 +18,12 @@ the LLM, so you can point it at whichever model you like.
 ## Install
 
 ```bash
-pip install git+https://github.com/ZedoMak/obsidian-agent.git
+pip install obsidian-agent-cli-app
+```
+or 
+
+```bash
+pipx install obsidian-agent-cli-app 
 ```
 
 This pulls in `obsidian-mcp` (the vault-access server) automatically —

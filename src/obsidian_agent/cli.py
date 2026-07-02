@@ -75,14 +75,19 @@ def tags(
 
 
 @app.command()
+@app.command()
 def task(
     prompt: str = typer.Argument(
         ..., help="Any instruction for the agent to carry out, then exit."
-    )
+    ),
+    yes: bool = typer.Option(
+        False, "--yes", "-y", help="Skip the plan confirmation prompt."
+    ),
 ):
-    """Run any one-off task against your vault (e.g. reorganizing notes), then exit."""
+    """Run any one-off task against your vault. For tasks that change
+    files, shows a plan and asks for confirmation before executing."""
     config = load_config()
-    asyncio.run(run_once(config, prompt))
+    asyncio.run(run_once(config, prompt, skip_confirm=yes))
 
 
 @app.command()

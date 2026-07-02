@@ -101,3 +101,23 @@ async def connect_session(stack: AsyncExitStack, vault_path: str):
     tools_result = await session.list_tools()
     openai_tools = [convert_mcp_tool_to_openai(t) for t in tools_result.tools]
     return session, openai_tools
+
+# Prefixes that identify tools which mutate the vault. Used to split
+# tools into a read-only set (safe to run during planning) and a full
+# set (only unlocked after the user confirms a plan).
+WRITE_TOOL_PREFIXES = (
+    "create_", "update_", "edit_", "delete_", "move_", "rename_",
+    "add_", "remove_", "batch_",
+)
+
+
+def is_write_tool(name: str) -> bool:
+    return name.startswith(WRITE_TOOL_PREFIXES)
+
+
+def split_tools(openai_tools: list) -> tuple[list, list]:
+    """Returns (read_only_tools, write_tools)."""
+    read_only, write = [], []
+    for t in openai_tools:
+        (write if is_write_tool(t["function"]["name"]) else read_only).append(t)
+    return read_only, write

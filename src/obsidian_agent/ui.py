@@ -78,3 +78,11 @@ def print_turn_separator():
 
 def prompt_user() -> str:
     return console.input("[bold cyan]❯[/] ")
+
+def print_plan(plan_text: str):
+    console.print()
+    console.print(Panel(Markdown(plan_text), title="proposed plan", border_style="yellow"))
+
+def confirm_plan() -> bool:
+    answer = console.input("[bold yellow]Proceed with this plan? [y/N][/] ").strip().lower()
+    return answer in ("y", "yes")
